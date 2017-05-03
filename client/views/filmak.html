@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html ng-app="erabApp"> 
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Hasiera</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  </head>
+  <body ng-controller="erabsController">
+
+
+      <!-- Meetups View 
+      <div ng-controller="erabsController">
+        <h1>{{erabs.length}} Erabiltzaile daude</h1>
+        <ul>
+          <li ng-repeat="erab in erabs">
+            {{erab.izena}}
+          </li>
+        </ul>
+        <form ng-submit="sortuErab()">
+          <input type="text" placeholder="Erabiltzaile izena" ng-model="erabIzena"></input>
+          <button type="submit">Gehitu</button>
+        </form> 
+      </div>-->
+      <!--Nabigazio barra-->
+  <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><big>Film App </big><small><bold>0.1</bold></small></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            
+              <ul class="navbar-text nav navbar-nav navbar-right">
+                <li>Kaixo,&nbsp; </li>
+                   <li>{{iz}}</li>
+              </ul>
+
+
+          </div><!--/.navbar-collapse -->
+        </div>
+      </nav>
+      <!--/Nabigazio barra-->
+
+      <!--Tituloa-->
+      <div titulo-jumbotron-filmak></div>
+      <!--/Tituloa-->
+      <!--Formularioa-->
+
+ 
+      <div class="container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <h2>Nabigazio barra</h2>
+          <ul class="nav nav-pills nav-stacked">
+           <li role="presentation" class="active"><a>Aukerak</a></li>
+           <li role="presentation"><a ng-click="aktibatuFilmakBozkatu()">Filmak bozkatu</a></li>
+           <li role="presentation"><a ng-click="aktibatuFilmakGehitu()">Filmak gehitu</a></li>
+         </ul>
+      </div>
+       <div  class="col-md-6"></div>
+       <div  ng-show="filmakGehituAktibatua" class="col-md-6">
+   <div >
+    <h2>Bete formularioa</h2>
+      <form  ng-submit="sortuErab()">
+ <div class="form-group">
+    <label for="izena">Filmaren izena: </label>
+    <input type="text" class="form-control" id="izena" placeholder="Filmaren izena" ng-model="filmIzena">
+  </div>
+   <div class="form-group">
+    <label for="urtea">Urtea: </label>
+    <input type="text" class="form-control" id="urtea" placeholder="Filmaren urtea" ng-model="filmUrtea">
+  </div>
+   <div class="form-group">
+    <label for="sinopsia">Sinopsia: </label>
+    <textarea row="5" type="textarea" class="form-control" id="sinopsia" placeholder="Idatzi filmaren laburpen labur eta esanguratzu bat" ng-model="filmSinopsia"> </textarea>
+  </div>
+     <div class="form-group">
+    <label for="izena">Iritsi pertsonala: </label>
+    <textarea row="3" type="text" class="form-control" id="iritsia" placeholder="Gehitu hemen filmari buruz daukazun iritsia" ng-model="filmIritsia"></textarea>
+  </div>
+
+        <button type="submit" class="btn btn-default">Gehitu</button>
+        </form> 
+       </div>
+        <!--/Formularioa-->
+    </div>
+            <!--Filmak-->
+           <div  ng-show="filmakBozkatuAktibatua" class="col-md-6">
+   <div ng-show="filmakBozkatuAktibatua" ng-model="erabiltzaileak">
+          <div ng-init="filmak = [{name:'Harry Potter', urtea:'2015',sinopsia:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', irudia:'http://t2.uccdn.com/images/7/3/7/img_como_conseguir_caratulas_para_peliculas_1737_orig.jpg',bozkak:'5',iritsiak:[{iritsia:'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'}]},
+      {name:'World War Z', urtea:'1915',sinopsia:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', irudia:'http://www.granadablogs.com/pateandoelmundo/wp-content/uploads/2013/08/WWZ.jpg',bozkak:'1',iritsiak:[{iritsia:'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'},{iritsia:'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'}]}]"></div>
+       </div >
+    <h2>Filmak <small> <input class="form-control" ng-model="searchTextFilma"></small></h2>
+     
+
+
+        <div >
+          <div ng-repeat="filma in filmak | filter:searchTextFilma" class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">{{filma.name}}</div>
+            </div>
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <img class="media-object" style="width:140px" src="{{filma.irudia}}" alt="{{filma.name}}">
+                </div>
+              </div>
+              <dl>
+                <dt>Urtea:</dt>
+                <dd>{{filma.urtea}}<dd>
+              </dl>
+     
+              <dl>
+                <dt>Sinopsia:</dt>
+                  <dd><em>"</em> {{filma.sinopsia}} <em>"</em></dd>
+              </dl>
+              <hr>
+              <dl>
+                <dt>Iritsiak:</dt>
+                <dd ng-repeat="iritsi in filma.iritsiak">- {{iritsi.iritsia}} </dd>
+              </dl>
+            </div>
+            <div class="panel-footer">
+               <p><input type="checkbox" name="bozkak" value="{{filma.name}}">&nbsp;Aukeratu filma bozkatzeko</p>
+               <p>Bozkak: {{filma.bozkak}}</p></div>
+          </div>
+                         
+             </div>   
+        <!--/Filmak-->
+    </div>
+    
+    <div class="col-md-3">
+      
+      <div ng-init="erabiltzaileak = [{name:'John', email:'mocejo@gmail.com',gustokoFilmak:[{f:'Harry Potter'}]},
+{name:'Mary', email:'mary@gmail.com',gustokoFilmak:[]}]"></div>
+    <h2>Erabiltzaileak
+     <small><input class="form-control" ng-model="searchText"></small>
+   </h2>
+   <h6>Egin klik erabiltzailearen gainean gustoko filmak ikusteko</h6>
+<ul class="nav nav-pills nav-stacked">
+                        <li  role="presentation" ng-repeat="erabiltzaile in erabiltzaileak | filter:searchText">
+                        <a  ng-click="lortuErabiltzaileDatuak()">{{erabiltzaile.name}} </a>
+                        <p ng-show="lortuErabiltzaileaAktibatua  and erabiltzaile.gustokoFilmak.length>0">Gustoko filmak</p>
+                        <ul ng-show="lortuErabiltzaileaAktibatua" ng-repeat="gustokoa in erabiltzaile.gustokoFilmak">
+                          <li>{{gustokoa.f}}</li> 
+                        </ul>
+                       </li>
+
+
+         </ul>
+ 
+
+
+    </div>
+  
+  </div>
+
+<hr>
+
+
+</div>
+
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+
+      <script type="text/javascript" src="/js/app.js"></script>
+      <script type="text/javascript" src="/js/jQuery.js"></script>
+      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/controllers/erabs-controller.js"></script>
+  </body>
+</html>
+
+<!-- https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js -->
