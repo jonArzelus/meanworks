@@ -1,4 +1,5 @@
-app.controller('erabsController', ['$scope', '$resource', function ($scope, $resource) {
+app.controller('erabsController', ['$scope', '$resource', '$http', '$location', function ($scope, $resource, $http, $location) {
+  
   var Erab = $resource('/api/erabs');
 
   Erab.query(function (results) {
@@ -7,8 +8,10 @@ app.controller('erabsController', ['$scope', '$resource', function ($scope, $res
   
 
   $scope.erabs = []
-
+  $scope.templateURL="notlogged";
+  $scope.templateURLcontent="notloggedtext";
   
+  console.log("kontroladorea abiarazita...");
   
   $scope.izenaPatroia="/^[a-zA-Z]*$/"
   $scope.postaPatroia="/^[a-z0-9._%+-]+@[a-z0-9.-]+\\\.[a-z]{2,4}$/"
@@ -63,9 +66,42 @@ app.controller('erabsController', ['$scope', '$resource', function ($scope, $res
 
   }
 
-  $scope.lortuErab= function(){
-  $scope.loginPosta;
-  $scope.loginPasahitza;
+  $scope.login = function(posta, pass) {
+    if(!posta || !pass) {
+      console.log("Login eskaera hutsa "+posta+" "+pass);
+    } else {
+      var urlx = '/api/erab/'+posta+'/'+pass;
+      console.log("Login eskaera: "+urlx);
+      $http({
+        method: 'GET',
+        url: urlx
+      }).then(function successCallback(response) {
+        console.log("login erantzun zuzena: "+angular.toJson(response));
+        if(response.data.length>0) {
+          console.log("Login zuzena");
+          $scope.erabiltzailea=posta; //erab izena data-tik
+          delete $scope.posta;
+          delete $scope.pass; 
+          $scope.templateURL="logged";
+          $scope.templateURLcontent="loggedtext";
+        } else {
+          console.log("Login okerra");
+        }
+      }, function errorCallback(response) {
+        console.log("Login erantzun okerra: "+angular.toJson(response));
+      });
+    }
+  };
+
+  $scope.logout = function() {
+    $scope.erabiltzailea="guest";
+    $scope.templateURL="notlogged";
+    $scope.templateURLcontent="notloggedtext";
+    console.log("Logout egina");
+  };
+
+  $scope.sartuGunean = function() {
+    $location.url('/filmak/'+ $scope.erabiltzailea);
   };
 
 }]);
@@ -74,7 +110,7 @@ app.directive("tituloJumbotron", function() {
     return {
         restrict : "A",
         template : ""
-        +"<div ng-controller="+'"erabsController"'+">"
+        +"<div>"
         +"<div class="+'"container">'
           +"<div class="+'"jumbotron text-justify">'
              +"<h1>Ongi etorria!</h1>"
@@ -90,7 +126,7 @@ app.directive("tituloJumbotronFilmak", function() {
     return {
         restrict : "A",
         template : ""
-        +"<div ng-controller="+'"erabsController"'+">"
+        +"<div>"
         +"<div class="+'"container">'
           +"<div class="+'"jumbotron text-justify">'
              +"<h1>Hau filmen gunea da</h1>"

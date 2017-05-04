@@ -10,49 +10,59 @@
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  
+  <base href="/" />
+
   </head>
   <body ng-controller="erabsController">
 
-      <!-- Meetups View 
-      <div ng-controller="erabsController">
-        <h1>{{erabs.length}} Erabiltzaile daude</h1>
-        <ul>
-          <li ng-repeat="erab in erabs">
-            {{erab.izena}}
-          </li>
-        </ul>
-        <form ng-submit="sortuErab()">
-          <input type="text" placeholder="Erabiltzaile izena" ng-model="erabIzena"></input>
-          <button type="submit">Gehitu</button>
-        </form> 
-      </div>-->
-      <!--Nabigazio barra-->
-  <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><big>Film App </big><small><bold>0.1</bold></small></a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" ng-submit="bilatuErab()">
-              <div class="form-group">
-                <input type="text" placeholder="Email" class="form-control" ng-model="loginPosta">
-              </div>
-              <div class="form-group">
-                <input type="password" placeholder="Password" class="form-control" ng-model="loginPasahitza">
-              </div>
-              <button type="submit" class="btn btn-success">Logeatu</button>
-            </form>
-          </div><!--/.navbar-collapse -->
-        </div>
-      </nav>
       <!--/Nabigazio barra-->
+      <script type="text/ng-template" id="notlogged">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <form class="navbar-form navbar-right" method="get" ng-submit="login(posta,pass)">
+                <div class="form-group">
+                  <input type="text" ng-model="posta" name="posta" placeholder="ePosta" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" ng-model="pass" name="pass" placeholder="Pasahitza" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success" onclick="console.log('loginClick '+posta.value+' '+pass.value)">Logeatu</button>
+              </form>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </nav>
+      </script>
 
+      <script type="text/ng-template" id="logged">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
+            </div>
+            <div class="navbar-right navbar-text">
+              Ongi etorri, {{erabiltzailea}}
+              <button type="button" class="btn btn-danger" ng-click="logout()" onclick="console.log('logoutClick')">Logout</button>
+            </div>
+          </div>
+        </nav>
+      </script>
+
+      <div ng-include="templateURL"></div>
+
+      <div ng-include="templateURLcontent"></div>
+
+  <script type="text/ng-template" id="notloggedtext">
       <!--Tituloa-->
       <div titulo-jumbotron></div>
       <!--/Tituloa-->
@@ -60,7 +70,7 @@
 
  
       <div class="container">
-      <div ng-controller="erabsController">
+      <div>
       <div class="row">
         <div class="col-md-3">
               <h2>Erregistratu zaitez aplikazioan sartzeko</h2>
@@ -146,6 +156,13 @@
 
  </div>
 </div>
+</script>
+
+<script type="text/ng-template" id="loggedtext">
+<div class="jumbotron text-center">
+  <button type="button" class="btn btn-info" ng-click="sartuGunean()">Sartu filmen gunean</button>
+</div>
+</script>
 
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
