@@ -5,6 +5,6 @@ module.exports = mongoose.model('Filma', {
   urtea: String,
   sinopsia: String,
   irudia: String,
-  bozkak:Number,
+  bozkak:[String],
   iritsiak: [String]
 });

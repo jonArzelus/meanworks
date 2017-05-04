@@ -82,7 +82,7 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
     film.urtea = filmaUrtea;
     film.irudia = filmaIrudia;
     film.sinopsia = filmaSinopsia;
-    film.bozkak = 0;
+    film.bozkak = [$scope.erabiltzailea];
     film.iritsiak = [filmaIritsia];
     console.log("Filma berria gehitzen: "+angular.toJson(film))
     film.$save(function (result) {
@@ -96,6 +96,10 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
 
     });
 
+  }
+
+  $scope.lortuErabiltzaileDatuak = function(izena) {
+  	console.log("izena: "+izena);
   }
 
   $scope.logout = function() {
