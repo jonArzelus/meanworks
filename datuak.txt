@@ -1,0 +1,42 @@
+use filmakdb;
+db.createCollection("erabs");
+db.createCollection("filmas");
+var erab = db.getCollection("erabs");
+var film = db.getCollection("filmas");
+erab.insertOne({
+	izena: "admin",
+	abizena: "admin",
+	postaElektronikoa: "admin@admin.com",
+	pasahitza: "admin1234",
+	rol: "admin",
+	bozkatuDitu: [],
+	gogokoDitu: [],
+	__v: 0
+});
+erab.insertOne({
+	izena: "user",
+	abizena: "user",
+	postaElektronikoa: "user@user.com",
+	pasahitza: "user1234",
+	rol: "user",
+	bozkatuDitu: [],
+	gogokoDitu: [],
+	__v: 0
+});
+film.insertOne({
+	izena: " El cuchitril de Joe ",
+	urtea: "1996",
+	irudia: "http://pics.filmaffinity.com/joe_s_apartment-642676719-mmed.jpg",
+	sipnosia: "Un joven de Iowa llega a Nueva York con la idea de vivir una agradable experiencia. Pronto descubre lo insegura y difícil que es la vida en la gran manzana. Pero la suerte le llega cuando descubre un pequeño apartamento de renta antigua gracias a las cucarachas que en éste viven. Los insectos se convertirán en sus mejores aliados... ",
+	bozkak: [],
+	iritsiak: [],
+	__v: 0
+});
+film.insertOne({
+	izena: "War Horse (Caballo de batalla)",
+	urtea: "2011",
+	sipnosia: "En un pueblo inglés, Albert, el hijo de un granjero, ve nacer un potrillo. Poco después, su padre lo adquiere en una subasta, y el chico le pone de nombre Joey. Pero la familia se arruina y no tiene más remedio que vender el caballo justo cuando estalla la Primera Guerra Mundial (1914-1918). Ése es el punto de partida de un viaje en el que tanto Albert como Joey lucharán por sobrevivir a la contienda y volver a estar juntos.",
+	irudia: "http://pics.filmaffinity.com/war_horse-925261133-mmed.jpg",
+	bozkak: [],
+	iritsiak: []
+});

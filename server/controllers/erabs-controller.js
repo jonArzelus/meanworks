@@ -26,20 +26,20 @@ module.exports.login = function(req, res) {
 module.exports.frogacreate = function (req, res) {
   //var erab = new Erab(req.body);
   var erab = new Erab({
-		izena: 'asdf',
-	  abizena: 'asdf',
-	  postaElektronikoa: 'asdf@asdf.com',
-	  pasahitza: 'asdf1234',
-	  rol: 'user',
+		izena: 'admin',
+	  abizena: 'admin',
+	  postaElektronikoa: 'admin@admin.com',
+	  pasahitza: 'admin1234',
+	  rol: 'admin',
 	  gogokoDitu: [],
 	  bozkatuDitu:[]
   });
   var erab1 = new Erab({
-		izena: 'asdf',
-	  abizena: 'asdf',
-	  postaElektronikoa: 'asdf@admin.com',
-	  pasahitza: 'asdf1234',
-	  rol: 'admin',
+		izena: 'user',
+	  abizena: 'user',
+	  postaElektronikoa: 'user@user.com',
+	  pasahitza: 'user1234',
+	  rol: 'user',
 	  gogokoDitu: [],
 	  bozkatuDitu:[]
   });
@@ -58,13 +58,7 @@ module.exports.frogacreate = function (req, res) {
 }
 
 module.exports.frogadelete = function(req, res) {
-	Erab.remove({postaElektronikoa: 'asdf@asdf.com'}, function(err, result) {
-		if(err) {
-			res.send(err);
-		}
-		//res.send("ezabatua?");
-	});
-	Erab.remove({postaElektronikoa: 'asdf@admin.com'}, function(err, result) {
+	Erab.remove({}, function(err, result) {
 		if(err) {
 			res.send(err);
 		}

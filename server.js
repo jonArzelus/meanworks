@@ -6,7 +6,8 @@ var express           = require('express'),
     filmsController   = require('./server/controllers/films-controller');
 
 
-mongoose.connect('mongodb://localhost:27017/mean-demo2');
+//mongoose.connect('mongodb://localhost:27017/mean-demo2');
+mongoose.connect('localhost', 'filmakdb');
 mongoose.connection.on('connected', function(){console.log("Konexioa egina datubasera")});
 mongoose.connection.on('error', function(){console.log("Errorea datubasera konexioa egitean")});
 mongoose.connection.on('disconnected', function(){console.log("Datubasera konexioa amaituta")});
@@ -30,10 +31,12 @@ app.use('/js', express.static(__dirname + '/client/js'));
 //REST API
 app.get('/api/erabs', erabsController.list);
 app.post('/api/erabs', erabsController.create);
-app.get('/api/erab/frogacreate', erabsController.frogacreate);
-app.get('/api/erab/frogadelete', erabsController.frogadelete);
 app.get('/api/erab/:posta/:pass', erabsController.login);
 app.get('/api/erab/:posta', erabsController.exists);
+app.get('/api/erab/frogacreate', erabsController.frogacreate);
+app.get('/api/erab/frogadelete', erabsController.frogadelete);
+app.get('/api/film/frogacreate', filmsController.frogacreate);
+app.get('/api/film/frogadelete', filmsController.frogadelete);
 app.get('/api/films', filmsController.list);
 app.post('/api/films', filmsController.create);
 
