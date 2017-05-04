@@ -34,7 +34,22 @@ module.exports.frogacreate = function (req, res) {
 	  gogokoDitu: [],
 	  bozkatuDitu:[]
   });
+  var erab1 = new Erab({
+		izena: 'asdf',
+	  abizena: 'asdf',
+	  postaElektronikoa: 'asdf@admin.com',
+	  pasahitza: 'asdf1234',
+	  rol: 'admin',
+	  gogokoDitu: [],
+	  bozkatuDitu:[]
+  });
   erab.save(function (err, result) {
+  	if(err) {
+			res.send(err);
+		}
+    //res.json(result);
+  });
+  erab1.save(function (err, result) {
   	if(err) {
 			res.send(err);
 		}
@@ -44,6 +59,12 @@ module.exports.frogacreate = function (req, res) {
 
 module.exports.frogadelete = function(req, res) {
 	Erab.remove({postaElektronikoa: 'asdf@asdf.com'}, function(err, result) {
+		if(err) {
+			res.send(err);
+		}
+		//res.send("ezabatua?");
+	});
+	Erab.remove({postaElektronikoa: 'asdf@admin.com'}, function(err, result) {
 		if(err) {
 			res.send(err);
 		}

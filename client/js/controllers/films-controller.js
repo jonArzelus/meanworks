@@ -20,35 +20,47 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
       console.log("Erabiltzailea existitzen da");
       $scope.erabiltzailea=response.data[0].postaElektronikoa; //erab izena data-tik
       $scope.erab = response.data[0];
+      if($scope.erab.rol=="admin") {
+        $scope.templateURLadmin="isadmin";
+      } else {
+        $scope.templateURLadmin="isuser";
+      }
       $scope.templateURL="logged";
     } else {
       console.log("Erabiltzailea ez da existitzen");
+      $scope.erabiltzailea="guest";
       $scope.templateURL="notlogged";
     }
   }, function errorCallback(response) {
     console.log("Erabiltzailea existitzen da? erantzun okerra: "+angular.toJson(response));
+    $scope.erabiltzailea="guest";
     $scope.templateURL="notlogged";
   });
 
-
-  $scope.erabiltzailea="guest";
-
   $scope.films = []
+
+  $scope.nabURL = "filmaboz"
 
   $scope.filmakGehituAktibatua=false
   $scope.filmakBozkatuAktibatua=true
   $scope.lortuErabiltzaileaAktibatua=false
 
   $scope.aktibatuFilmakGehitu = function() {
+    if($scope.nabURL!="filmageh") {
+      $scope.nabURL = "filmageh"
       $scope.erregistroAktibatua=false
       $scope.filmakBozkatuAktibatua=false
       $scope.filmakGehituAktibatua=(!$scope.filmakGehituAktibatua);
+    }
   };
 
   $scope.aktibatuFilmakBozkatu = function() {
+    if($scope.nabURL!="filmaboz") {
+      $scope.nabURL = "filmaboz"
       $scope.erregistroAktibatua=false
       $scope.filmakGehituAktibatua=false
       $scope.filmakBozkatuAktibatua=(!$scope.filmakBozkatuAktibatua);
+    }
   };
 
   $scope.lortuFilmaDatuak=function(){

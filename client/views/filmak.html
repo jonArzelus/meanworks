@@ -13,23 +13,50 @@
 </head>
 <body ng-controller="filmsController">
 
+<!--
 
-
-      <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
         </div>
         <div class="navbar-right navbar-text">
-          Ongi etorri, {{erabiltzailea}}
+          Ongi etorri, {{erabiltzailea}}<div ng-include="templateURLadmin"></div>
           <button type="button" class="btn btn-danger" ng-click="logout()" onclick="console.log('logoutClick')">Logout</button>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <div ng-include="templateURL"></div>
 
+    <script type="text/ng-template" id="isadmin">
+      Ongi etorri, {{erabiltzailea}} <span class="label label-primary">ADMIN</span> <button type="button" class="btn btn-danger" ng-click="logout()" onclick="console.log('logoutClick')">Logout</button>
+    </script>
+
+    <script type="text/ng-template" id="isuser">
+      Ongi etorri, {{erabiltzailea}} <span class="label label-default">USER</span> <button type="button" class="btn btn-danger" ng-click="logout()" onclick="console.log('logoutClick')">Logout</button>
+    </script>
+
+    <script type="text/ng-template" id="filmaboz">
+      <li role="presentation" class="active"><a ng-click="aktibatuFilmakBozkatu()">Filmak bozkatu</a></li>
+      <li role="presentation"><a ng-click="aktibatuFilmakGehitu()">Filmak gehitu</a></li>
+    </script>
+    <script type="text/ng-template" id="filmageh">
+      <li role="presentation"><a ng-click="aktibatuFilmakBozkatu()">Filmak bozkatu</a></li>
+      <li role="presentation" class="active"><a ng-click="aktibatuFilmakGehitu()">Filmak gehitu</a></li>
+    </script>
+    
     <script type="text/ng-template" id="logged">
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
+        </div>
+        
+          <div class="navbar-right navbar-text" ng-include="templateURLadmin"></div>
+        
+      </div>
+    </nav>
       <!--/Nabigazio barra-->
 
       <!--Tituloa-->
@@ -43,38 +70,35 @@
         <div class="row">
           <div class="col-md-3">
             <h2>Nabigazioa</h2>
-            <ul class="nav nav-pills nav-stacked">
-             <li role="presentation"><a ng-click="aktibatuFilmakBozkatu()">Filmak bozkatu</a></li>
-             <li role="presentation"><a ng-click="aktibatuFilmakGehitu()">Filmak gehitu</a></li>
-           </ul>
-         </div>
-         <div  class="col-md-6"></div>
-         <div  ng-show="filmakGehituAktibatua" class="col-md-6">
-           <div >
-            <h2>Bete formularioa</h2>
-            <form  ng-submit="sortuFilma()">
-             <div class="form-group">
-              <label for="izena">Filmaren izena: </label>
-              <input type="text" class="form-control" id="izena" placeholder="Filmaren izena" ng-model="filmaIzena">
-            </div>
-            <div class="form-group">
-              <label for="urtea">Urtea: </label>
-              <input type="text" class="form-control" id="urtea" placeholder="Filmaren urtea" ng-model="filmaUrtea">
-            </div>
-            <div class="form-group">
-              <label for="urtea">Irudiari esteka: </label>
-              <input type="text" class="form-control" id="urtea" placeholder="Sartu hemen irudiari esteka" ng-model="filmaIrudia">
-            </div>
-            <div class="form-group">
-              <label for="sinopsia">Sinopsia: </label>
-              <textarea row="5" type="textarea" class="form-control" id="sinopsia" placeholder="Idatzi filmaren laburpen labur eta esanguratzu bat" ng-model="filmaSinopsia"> </textarea>
-            </div>
-            <div class="form-group">
-              <label for="izena">Iritsi pertsonala:
-              </label>
-              <textarea row="3" type="text" class="form-control" id="iritsia" placeholder="Gehitu hemen filmari buruz daukazun iritsia" ng-model="filmaIritsia">
-              </textarea>
-            </div>
+            <ul class="nav nav-pills nav-stacked" ng-include="nabURL">
+              
+            </ul>
+          </div>
+       <div  class="col-md-6"></div>
+          <div  ng-show="filmakGehituAktibatua" class="col-md-6">
+            <div >
+              <h2>Bete formularioa</h2>
+              <form  ng-submit="sortuFilma()">
+              <div class="form-group">
+                <label for="izena">Filmaren izena: </label>
+                <input type="text" class="form-control" id="izena" placeholder="Filmaren izena" ng-model="filmaIzena">
+              </div>
+              <div class="form-group">
+                <label for="urtea">Urtea: </label>
+                <input type="text" class="form-control" id="urtea" placeholder="Filmaren urtea" ng-model="filmaUrtea">
+              </div>
+              <div class="form-group">
+                <label for="urtea">Irudiari esteka: </label>
+                <input type="text" class="form-control" id="urtea" placeholder="Sartu hemen irudiari esteka" ng-model="filmaIrudia">
+              </div>
+              <div class="form-group">
+                <label for="sinopsia">Sinopsia: </label>
+                <textarea row="5" type="textarea" class="form-control" id="sinopsia" placeholder="Idatzi filmaren laburpen labur eta esanguratzu bat" ng-model="filmaSinopsia"> </textarea>
+              </div>
+              <div class="form-group">
+                <label for="izena">Iritsi pertsonala:</label>
+                <textarea row="3" type="text" class="form-control" id="iritsia" placeholder="Gehitu hemen filmari buruz daukazun iritsia" ng-model="filmaIritsia"></textarea>
+              </div>
 
             <button type="submit" class="btn btn-default">Gehitu</button>
           </form> 
@@ -158,6 +182,14 @@
 </script>
 
 <script type="text/ng-template" id="notlogged">
+<nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
+        </div>
+        
+      </div>
+    </nav>
   <div class="jumbotron text-center">
     <button type="button" class="btn btn-info" ng-click="logout()">Mesedez, erregistratu eta logeatu filmen gunea erabiltzeko</button>
   </div>
