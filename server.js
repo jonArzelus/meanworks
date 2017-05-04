@@ -17,10 +17,10 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/client/views/index.html');
 });
 
-app.get('/filmak', function (req, res) {
+/*app.get('/filmak', function (req, res) {
   res.sendfile(__dirname + '/client/views/filmak.html');
-});
-app.get('/#/filmak/:userposta', function (req, res) {
+});*/
+app.get('/filmak/:userposta', function (req, res) {
   res.sendfile(__dirname + '/client/views/filmak.html');
 });
 

@@ -16,24 +16,16 @@
 
 
       <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><big>Film App </big><small><bold>0.1</bold></small></a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="navbar-text nav navbar-nav navbar-right">
-              <li>Kaixo,&nbsp; </li>
-              <li>{{iz}}</li>
-            </ul>
-          </div><!--/.navbar-collapse -->
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><big><b>F</b>ilm <b>A</b>pp </big><small><low>0.1</low></small></a>
         </div>
-      </nav>
+        <div class="navbar-right navbar-text">
+          Ongi etorri, {{erabiltzailea}}
+          <button type="button" class="btn btn-danger" ng-click="logout()" onclick="console.log('logoutClick')">Logout</button>
+        </div>
+      </div>
+    </nav>
       <!--/Nabigazio barra-->
 
       <!--Tituloa-->

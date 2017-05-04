@@ -1,4 +1,4 @@
-app.controller('erabsController', ['$scope', '$resource', '$http', '$location', function ($scope, $resource, $http, $location) {
+app.controller('erabsController', ['$scope', '$resource', '$http', '$location', '$window', function ($scope, $resource, $http, $location, $window) {
   
   var Erab = $resource('/api/erabs');
 
@@ -101,7 +101,8 @@ app.controller('erabsController', ['$scope', '$resource', '$http', '$location', 
   };
 
   $scope.sartuGunean = function() {
-    $location.url('/filmak/'+ $scope.erabiltzailea);
+    //$location.url('/filmak/'+ $scope.erabiltzailea);
+    $window.location.href = '/filmak/'+$scope.erabiltzailea;
   };
 
 }]);

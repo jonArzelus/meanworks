@@ -1,15 +1,14 @@
-app.controller('filmsController', ['$scope', '$resource', function ($scope, $resource) {
+app.controller('filmsController', ['$scope', '$resource', '$location', '$window', function ($scope, $resource, $location, $window) {
   var Film = $resource('/api/films');
 
   Film.query(function (results) {
     $scope.films = results;
   });
   
+  console.log("Erabiltzailea: "+window.location.pathname.split( '/' )[2]);
+  $scope.erabiltzailea = window.location.pathname.split( '/' )[2];
 
   $scope.films = []
-
-  
-  
 
   $scope.filmakGehituAktibatua=false
   $scope.filmakBozkatuAktibatua=true
@@ -38,7 +37,6 @@ app.controller('filmsController', ['$scope', '$resource', function ($scope, $res
     //Funtzio honek bozkak datu basean gordeko ditu
 
   };
-  $scope.iz=" Frogetarako erabiltzailea"
 
   $scope.sortuFilma = function () {
     var film = new Film();
@@ -60,6 +58,10 @@ app.controller('filmsController', ['$scope', '$resource', function ($scope, $res
 
     });
 
+  }
+
+  $scope.logout = function() {
+    $window.location.href = '/';
   }
 
 }]);
