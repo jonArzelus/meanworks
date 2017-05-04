@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="erabApp"> 
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hasiera</title>
+  <title>Filmak</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -117,7 +118,7 @@
               <hr>
               <dl>
                 <dt>Iritsiak:</dt>
-                <dd ng-repeat="iritsi in filma.iritsiak">- {{filma.iritsiak}} </dd>
+                <dd ng-repeat="iritsi in filma.iritsiak">- {{iritsi}} </dd>
               </dl>
             </div>
             <div class="panel-footer">
@@ -167,7 +168,8 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/controllers/erabs-controller.js"></script>
 <script type="text/javascript" src="/js/controllers/films-controller.js"></script>
-</body>
+
+
 </html>
 
 <!-- https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js -->
