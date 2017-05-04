@@ -45,7 +45,7 @@
       <li role="presentation"><a ng-click="aktibatuFilmakBozkatu()">Filmak bozkatu</a></li>
       <li role="presentation" class="active"><a ng-click="aktibatuFilmakGehitu()">Filmak gehitu</a></li>
     </script>
-    
+
     <script type="text/ng-template" id="logged">
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container">
@@ -157,16 +157,14 @@
        </h2>
        <h6>Egin klik erabiltzailearen gainean gustoko filmak ikusteko</h6>
        <ul ng-controller="erabsController" class="nav nav-pills nav-stacked">
-        <li  role="presentation" ng-repeat="erab in erabs | filter:searchText">
-          <a  ng-click="lortuErabiltzaileDatuak()">{{erab.izena}} </a>
-          <p ng-show="lortuErabiltzaileaAktibatua  and erab.gogokoDitu.length>0">Gustoko filmak</p>
-          <ul ng-show="lortuErabiltzaileaAktibatua" ng-repeat="gustokoa in erab.gogokoDitu">
-            <li>{{gustokoa.iritsia}}</li> 
-          </ul>
-        </li>
-
-
-      </ul>
+          <li  role="presentation" ng-repeat="erab in erabs | filter:searchText">
+            <a  ng-click="lortuErabiltzaileDatuak()">{{erab.izena}} </a>
+            <p ng-show="lortuErabiltzaileaAktibatua  && erab.gogokoDitu.length>0">Gustoko filmak</p>
+            <ul ng-show="lortuErabiltzaileaAktibatua" ng-repeat="gustokoa in erab.gogokoDitu">
+              <li>{{gustokoa.iritsia}}</li> 
+            </ul>
+          </li>
+        </ul>
 
 
 

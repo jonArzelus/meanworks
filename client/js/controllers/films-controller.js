@@ -84,6 +84,7 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
     film.sinopsia = $scope.filmaSinopsia;
     film.bozkak = 0;
     film.iritsiak = [];
+    console.log(angular.toJson(film))
     film.$save(function (result) {
       $scope.films.push(result);
       $scope.filmaIzena = '';
