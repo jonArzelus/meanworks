@@ -6,6 +6,6 @@ module.exports = mongoose.model('Erab', {
   postaElektronikoa: String,
   pasahitza: String,
   rol:String,
-  gogokoDitu: [],
-  bozkatuDitu:[]
+  gogokoDitu: [String],
+  bozkatuDitu:[String]
 });

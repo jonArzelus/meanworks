@@ -2,7 +2,9 @@ var express           = require('express'),
     app               = express(),
     bodyParser        = require('body-parser'),
     mongoose          = require('mongoose'),
-    erabsController   = require('./server/controllers/erabs-controller');
+    erabsController   = require('./server/controllers/erabs-controller'),
+    filmsController   = require('./server/controllers/films-controller');
+
 
 mongoose.connect('mongodb://localhost:27017/mean-demo2');
 
@@ -18,9 +20,12 @@ app.get('/filmak', function (req, res) {
 
 app.use('/js', express.static(__dirname + '/client/js'));
 
+
 //REST API
 app.get('/api/erabs', erabsController.list);
 app.post('/api/erabs', erabsController.create);
+app.get('/api/films', filmsController.list);
+app.post('/api/films', filmsController.create);
 
 app.listen(3000, function() {
   console.log('Zerbitzaria prest...');
