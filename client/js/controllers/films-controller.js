@@ -75,23 +75,23 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
 
   };
 
-  $scope.sortuFilma = function () {
+  $scope.sortuFilma = function (filmaIzena,filmaUrtea,filmaIrudia,filmaSinopsia,filmaIritsia) {
     var film = new Film();
     //Gehitu hemen entitatearen atributuak
-    film.izena = $scope.filmaIzena;
-    film.urtea = $scope.filmaUrtea;
-    film.irudia = $scope.filmaIrudia;
-    film.sinopsia = $scope.filmaSinopsia;
+    film.izena = filmaIzena;
+    film.urtea = filmaUrtea;
+    film.irudia = filmaIrudia;
+    film.sinopsia = filmaSinopsia;
     film.bozkak = 0;
-    film.iritsiak = [];
-    console.log(angular.toJson(film))
+    film.iritsiak = [filmaIritsia];
+    console.log("Filma berria gehitzen: "+angular.toJson(film))
     film.$save(function (result) {
       $scope.films.push(result);
       $scope.filmaIzena = '';
       $scope.filmaUrtea = '';
       $scope.filmaIrudia = '';
       $scope.filmaSinopsia = '';
-      $scope.filmaBozkak = '';
+      //$scope.filmaBozkak = '';
       $scope.filmaIritsia='';
 
     });

@@ -78,26 +78,26 @@
           <div  ng-show="filmakGehituAktibatua" class="col-md-6">
             <div >
               <h2>Bete formularioa</h2>
-              <form  ng-submit="sortuFilma()">
+              <form  ng-submit="sortuFilma(filmaIzena,filmaUrtea,filmaIrudia,filmaSinopsia,filmaIritsia)">
               <div class="form-group">
                 <label for="izena">Filmaren izena: </label>
-                <input type="text" class="form-control" id="izena" placeholder="Filmaren izena" ng-model="filmaIzena">
+                <input type="text" class="form-control" id="filmaIzena" placeholder="Filmaren izena" ng-model="filmaIzena">
               </div>
               <div class="form-group">
                 <label for="urtea">Urtea: </label>
-                <input type="text" class="form-control" id="urtea" placeholder="Filmaren urtea" ng-model="filmaUrtea">
+                <input type="text" class="form-control" id="filmaUrtea" placeholder="Filmaren urtea" ng-model="filmaUrtea">
               </div>
               <div class="form-group">
                 <label for="urtea">Irudiari esteka: </label>
-                <input type="text" class="form-control" id="urtea" placeholder="Sartu hemen irudiari esteka" ng-model="filmaIrudia">
+                <input type="text" class="form-control" id="filmaIrudia" placeholder="Sartu hemen irudiari esteka" ng-model="filmaIrudia">
               </div>
               <div class="form-group">
                 <label for="sinopsia">Sinopsia: </label>
-                <textarea row="5" type="textarea" class="form-control" id="sinopsia" placeholder="Idatzi filmaren laburpen labur eta esanguratzu bat" ng-model="filmaSinopsia"> </textarea>
+                <textarea row="5" type="textarea" class="form-control" id="filmaSinopsia" placeholder="Idatzi filmaren laburpen labur eta esanguratzu bat" ng-model="filmaSinopsia"> </textarea>
               </div>
               <div class="form-group">
                 <label for="izena">Iritsi pertsonala:</label>
-                <textarea row="3" type="text" class="form-control" id="iritsia" placeholder="Gehitu hemen filmari buruz daukazun iritsia" ng-model="filmaIritsia"></textarea>
+                <textarea row="3" type="text" class="form-control" id="filmaIritsia" placeholder="Gehitu hemen filmari buruz daukazun iritsia" ng-model="filmaIritsia"></textarea>
               </div>
 
             <button type="submit" class="btn btn-default">Gehitu</button>
