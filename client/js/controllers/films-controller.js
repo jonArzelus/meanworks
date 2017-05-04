@@ -1,4 +1,4 @@
-app.controller('filmsController', ['$scope', '$resource', '$location', '$window', function ($scope, $resource, $location, $window) {
+app.controller('filmsController', ['$scope', '$resource', '$location', '$window', '$http', function ($scope, $resource, $location, $window, $http) {
   var Film = $resource('/api/films');
 
   Film.query(function (results) {
@@ -6,7 +6,32 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
   });
   
   console.log("Erabiltzailea: "+window.location.pathname.split( '/' )[2]);
-  $scope.erabiltzailea = window.location.pathname.split( '/' )[2];
+  var erabiltzailea = window.location.pathname.split( '/' )[2];
+
+  //ikusi ea erabiltzailea existitzen den
+  var urlx = '/api/erab/'+erabiltzailea;
+  console.log("Erabiltzailea existitzen da?: "+urlx);
+  $http({
+    method: 'GET',
+    url: urlx
+  }).then(function successCallback(response) {
+    console.log("login erantzun zuzena: "+angular.toJson(response));
+    if(response.data.length>0) {
+      console.log("Erabiltzailea existitzen da");
+      $scope.erabiltzailea=response.data[0].postaElektronikoa; //erab izena data-tik
+      $scope.erab = response.data[0];
+      $scope.templateURL="logged";
+    } else {
+      console.log("Erabiltzailea ez da existitzen");
+      $scope.templateURL="notlogged";
+    }
+  }, function errorCallback(response) {
+    console.log("Erabiltzailea existitzen da? erantzun okerra: "+angular.toJson(response));
+    $scope.templateURL="notlogged";
+  });
+
+
+  $scope.erabiltzailea="guest";
 
   $scope.films = []
 

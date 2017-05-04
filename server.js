@@ -33,6 +33,7 @@ app.post('/api/erabs', erabsController.create);
 app.get('/api/erab/frogacreate', erabsController.frogacreate);
 app.get('/api/erab/frogadelete', erabsController.frogadelete);
 app.get('/api/erab/:posta/:pass', erabsController.login);
+app.get('/api/erab/:posta', erabsController.exists);
 app.get('/api/films', filmsController.list);
 app.post('/api/films', filmsController.create);
 

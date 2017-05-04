@@ -50,3 +50,12 @@ module.exports.frogadelete = function(req, res) {
 		res.send("ezabatua?");
 	});
 }
+
+module.exports.exists = function(req, res) {
+	Erab.find({postaElektronikoa: req.params.posta}, function(err, result) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(result);
+	});
+}
