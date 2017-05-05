@@ -1,5 +1,8 @@
 var Erab = require('../models/erabDB');
 
+/*
+ARIKETA 1 - Erabiltzailea sortzerakoan ikusi ea existitzen den
+*/
 module.exports.create = function (req, res) {
   var erab = new Erab(req.body);
   erab.save(function (err, result) {
@@ -13,7 +16,7 @@ module.exports.list = function (req, res) {
   });
 }
 
-//Errore kontrolarekin eta eskatutako datuak dituen erabiltzailea itzultzen du
+//Errore kontrolarekin, eskatutako datuak dituen erabiltzailea itzultzen du
 module.exports.login = function(req, res) {
 	Erab.find({postaElektronikoa: req.params.posta, pasahitza: req.params.pass}, function(err, result) {
 		if(err) {
@@ -24,7 +27,6 @@ module.exports.login = function(req, res) {
 }
 
 module.exports.frogacreate = function (req, res) {
-  //var erab = new Erab(req.body);
   var erab = new Erab({
 		izena: 'admin',
 	  abizena: 'admin',
@@ -47,7 +49,6 @@ module.exports.frogacreate = function (req, res) {
   	if(err) {
 			res.send(err);
 		}
-    //res.json(result);
   });
   erab1.save(function (err, result) {
   	if(err) {

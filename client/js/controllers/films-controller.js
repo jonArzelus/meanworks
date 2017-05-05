@@ -45,6 +45,9 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
   $scope.filmakBozkatuAktibatua=true
   $scope.lortuErabiltzaileaAktibatua=false
 
+  /*
+	ARIKETA 2 - Botoiak erakusteko funtzio bat gehitu, hurrengoaren antzekoa izango dena
+  */
   $scope.aktibatuFilmakGehitu = function() {
     if($scope.nabURL!="filmageh") {
       $scope.nabURL = "filmageh"
@@ -77,7 +80,7 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
 
   $scope.sortuFilma = function (filmaIzena,filmaUrtea,filmaIrudia,filmaSinopsia,filmaIritsia) {
     var film = new Film();
-    //Gehitu hemen entitatearen atributuak
+    //Entitatearen atributuak
     film.izena = filmaIzena;
     film.urtea = filmaUrtea;
     film.irudia = filmaIrudia;
@@ -105,5 +108,27 @@ app.controller('filmsController', ['$scope', '$resource', '$location', '$window'
   $scope.logout = function() {
     $window.location.href = '/';
   }
+
+  /*
+	ARIKETA 4 - Direktiba bat sortu, hurrengoaren antzekoa izango dena
+  */
+  /*
+  app.directive("tituloJumbotronFilmak", function() {
+    return {
+        restrict : "A",
+        template : ""
+        +"<div>"
+        +"<div class="+'"container">'
+          +"<div class="+'"jumbotron text-justify">'
+             +"<h1>Hau filmen gunea da</h1>"
+              +"<p>Nabigatu aplikazioaren aukeretan ezkerreko barraren bitartez, erabili "
+              +"eskuineko barraren bilatzaileak erabiltzaileak edo filmak aurkitzeko.</p>"
+
+          +"</div>"
+        +"</div>"
+        +"</div>"
+    };
+});
+*/
 
 }]);
